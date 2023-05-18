@@ -24,7 +24,7 @@ const main = async () =>{
         res.send(":hello world")
     })
 
-    app.get('/user', async (req, res) => {
+    app.get('/users', async (req, res) => {
         const mongoGetUsersRepository = new MongoGetUsersRepository();
     
         const getUsersController= new GetUsersController(mongoGetUsersRepository) 
