@@ -5,16 +5,12 @@ import { MongoClient } from "../../database/mongo";
 
 export class MongoGetUsersRepository implements IGetUsersResponsitory {
     async getUsers(): Promise<User[]> {
-        const users = await MongoClient.db.collection<User>('users').find({}).toArray();
+        const users = await MongoClient.db.collection<Omit<User,"id">>('users').find({}).toArray();
 
         
-        return [
-            {
-                name: "admin",
-                username: "admin",
-                password: "1",
-                email: " aaaa@aaa",
-            },
-        ]
+        return users.map( ({_id, ...rest}) => ({
+            ...rest,
+            id: _id.toHexString()
+        }))
     }
 }
