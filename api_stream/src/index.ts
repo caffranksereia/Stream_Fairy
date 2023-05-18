@@ -1,20 +1,45 @@
-import express, { Response, Request, Router}  from "express"
+import express, { Response, Request, Router, response}  from "express"
 import * as dotenv from "dotenv"
 import swaggerUi from "swagger-ui-express"
-dotenv.config();
-// import swaggerDocs from "./swagger.json"
-const router = Router();
+import { MongoGetUsersRepository } from "./repository/get-users/mongo-get-users";
+import { GetUsersController } from "./controllers/get-users/get-user";
+import { MongoClient } from "./database/mongo";
 
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({extended:false}))
-// app.use("swaggerUi",swaggerUi.serve, swaggerUi.setup(swaggerDocs) )
-app.get('/', (req, res) => {
-    res.send(":hello world")
-})
 
-const PORT = process.env.PORT || 4000
+const main = async () =>{
+    const router = Router();
+
+    const app = express()
+    app.use(express.json())
+    app.use(express.urlencoded({extended:false}))
+    
+    
+    
+    dotenv.config();
+
+
+    await MongoClient.connect()
+
+    app.get('/', (req, res) => {
+        res.send(":hello world")
+    })
+
+    app.get('/user', async (req, res) => {
+        const mongoGetUsersRepository = new MongoGetUsersRepository();
+    
+        const getUsersController= new GetUsersController(mongoGetUsersRepository) 
+    
+        const {body, statusCode} = await getUsersController.handle()
+    
+        res.send(body).status(statusCode)
+    })
+
+    const PORT = process.env.PORT || 4000
 
 app.listen(PORT, ()=>{
     console.log(`${PORT}`)
 })
+
+}
+
+main();
