@@ -1,5 +1,9 @@
 import { User } from "../../models/user";
 
+export interface ICreateUserRepository {
+    handle(): Promise<HttpResponse<User>>
+}
+
 export interface CreateUserParams {
     name: string;
     username:string;
