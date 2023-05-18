@@ -1,7 +1,7 @@
 import { User } from "../../models/user"
-
+import {HttpResponde} from "../protocols"
 export interface IGetUsersContollers {
-    handle():any
+    handle():Promise<HttpResponse<User[]>>
 }
 
 export interface IGetUsersResponsitory {
