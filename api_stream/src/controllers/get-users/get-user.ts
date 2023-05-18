@@ -14,5 +14,6 @@ export class GetUsersController implements IGetUsersContollers {
                                                 body: "Something went wrong" 
                                             }
         
+        }
     }
 }
