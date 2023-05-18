@@ -10,3 +10,7 @@ app.use(express.json())
 
 
 const PORT = process.env.PORT 
+
+app.listen(PORT, ()=>{
+    console.log(`console.log${PORT}`)
+})
