@@ -4,6 +4,8 @@ import swaggerUi from "swagger-ui-express"
 import { MongoGetUsersRepository } from "./repository/get-users/mongo-get-users";
 import { GetUsersController } from "./controllers/get-users/get-user";
 import { MongoClient } from "./database/mongo";
+import { MongoCreateUserRepository } from "./repository/post-users/mongo-create-user";
+import { CreateUserController } from "./controllers/create-user/create-user";
 
 
 const main = async () =>{
@@ -34,12 +36,12 @@ const main = async () =>{
         res.send(body).status(statusCode)
     })
 
-    app.post('/user', async (req, res) => {
-        const mongoGetUsersRepository = new MongoGetUsersRepository();
+    app.post('/users', async (req, res) => {
+        const mongoCreateRepository = new MongoCreateUserRepository();
     
-        const getUsersController= new GetUsersController(mongoGetUsersRepository) 
+        const createUserController= new CreateUserController(mongoCreateRepository) 
     
-        const {body, statusCode} = await getUsersController.handle()
+        const {body, statusCode} = await createUserController.handle({body: req.body})
     
         res.send(body).status(statusCode)
     })
