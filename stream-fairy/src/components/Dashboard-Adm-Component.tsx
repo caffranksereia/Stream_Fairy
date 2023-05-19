@@ -1,6 +1,7 @@
 import { Component } from "react";
 import userServices from "services/user.services";
 import { Link} from "react-router-dom";
+import { NavBar } from "./NavBar";
 
 type Props = {};
 
@@ -42,19 +43,9 @@ export default class DashboardAdmComponents extends Component<Props, State> {
       <div className="container">
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
+          <NavBar/>
         </header>
-        <div>
-            <NavLink to="/users">
-                
-            </NavLink>
-        <nav>
-            <ul className="menu">
-                    <li><a href="#">Gestao de Filme</a></li>
-                    <li><a href="#">Gestao de Usuario</a></li>
-                </ul>
-         </nav>
         </div>
-      </div>
     );
   }
 }
