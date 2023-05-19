@@ -1,6 +1,5 @@
 import { Component } from "react";
-
-import UserService from "../services/user.service";
+import userServices from "services/user.services";
 
 type Props = {};
 
@@ -18,7 +17,7 @@ export default class DashboardUserComponents extends Component<Props, State> {
   }
 
   componentDidMount() {
-    UserService.getUserBoard().then(
+    userServices.getUserBoard().then(
       response => {
         this.setState({
           content: response.data
