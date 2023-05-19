@@ -1,9 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import { Component } from "react"
-import  DashboardAdmComponents from "components/Dashboard-Adm-Component";
 import DashboardUserComponents from "components/Dashboard-User-Component";
 import RegisterComponent from "components/Register-Component";
-import ProfileComponents from "components/Profile-Component";
 import Home from "pages/Home";
 import LoginComponent from "components/Login-Component";
 import { IUser } from "interfaces/IUser";
@@ -11,6 +9,9 @@ import authService from "services/auth.service";
 import { ListComponentUser } from "components/List-Component.User";
 import { ListComponentMovie } from "components/List-Component.Movie";
 import EventBus from "./common/ EventBus"
+import { DashboardAdmComponents } from "components/Dashboard-Adm-Component";
+import { ProfileComponents } from "components/Profile-Component";
+
 type Props = {};
 
 type State = {
