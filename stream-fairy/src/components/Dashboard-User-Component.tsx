@@ -1,17 +1,49 @@
-import React,{ FC } from "react"
-import { ListComponentMovie } from "./List-Component.Movie"
+import { Component } from "react";
 
-export const  DashboardUserComponent: FC= ()=>{
+import UserService from "../services/user.service";
 
+type Props = {};
 
+type State = {
+  content: string;
+}
+
+export default class DashboardUserComponents extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      content: ""
+    };
+  }
+
+  componentDidMount() {
+    UserService.getUserBoard().then(
+      response => {
+        this.setState({
+          content: response.data
+        });
+      },
+      error => {
+        this.setState({
+          content:
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+        });
+      }
+    );
+  }
+
+  render() {
     return (
-        <div>
-            <div>
-                <h1>Welcome Usuario </h1>
-            </div>
-            <div>
-              <ListComponentMovie/>
-            </div>
-        </div>
-    )
-    }
+      <div className="container">
+        <header className="jumbotron">
+          <h3>{this.state.content}</h3>
+        </header>
+      </div>
+    );
+  }
+}
