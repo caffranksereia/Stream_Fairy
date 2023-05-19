@@ -1,11 +1,13 @@
 import { Routes, Route, Link } from "react-router-dom";
 import { Component } from "react"
-import { DashboardAdmComponent } from "components/Dashboard-Adm-Component";
+import  DashboardAdmComponents from "components/Dashboard-Adm-Component";
 import DashboardUserComponents from "components/Dashboard-User-Component";
+import RegisterComponent from "components/Register-Component";
+import ProfileComponents from "components/Profile-Component";
 import Home from "pages/Home";
 import LoginComponent from "components/Login";
-import RegisterUserComponent from "features/Register.User";
 import { IUser } from "interfaces/IUser";
+import authService from "services/auth.service";
 
 type Props = {};
 
@@ -128,10 +130,10 @@ class App extends Component<Props, State> {
             <Routes>
               <Route path="/home" element={<Home />} />
               <Route path="/login" element={<LoginComponent />} />
-              <Route path="/register" element={<RegisterUserComponent />} />
+              <Route path="/register" element={<RegisterComponent />} />
               <Route path="/profile" element={<ProfileComponents />} />
               <Route path="/user" element={<DashboardUserComponents />} />
-              <Route path="/admin" element={<DashboardAdmComponent />} />
+              <Route path="/admin" element={<DashboardAdmComponents />} />
             </Routes>
           </div>
         </div>
