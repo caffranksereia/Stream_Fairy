@@ -13,13 +13,15 @@
         "@types/styled-components": "^5.1.26",
         "axios": "^1.4.0",
         "bootstrap": "^5.2.3",
+        "formik": "^2.2.9",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.43.9",
         "react-router-dom": "^6.11.1",
         "react-scripts": "5.0.1",
         "styled-components": "^6.0.0-rc.1",
-        "typescript": "*"
+        "typescript": "*",
+        "yup": "^1.1.1"
     },
     "devDependencies": {
         "@types/react-router-dom": "^5.3.3",
