@@ -17,9 +17,13 @@ class AuthService {
     logout(){
         localStorage.removeItem("user")
     }
-    register(user: IUser) {
+    register(username:string, password: string, name:string, email: string, role?:string) {
         return api.post("signup", {
-            user
+            username,
+            password,
+            name,
+            email
+
         })
     }
 
