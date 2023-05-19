@@ -1,5 +1,6 @@
 import { Component } from "react";
 import userServices from "services/user.services";
+import { Link} from "react-router-dom";
 
 type Props = {};
 
@@ -43,6 +44,9 @@ export default class DashboardAdmComponents extends Component<Props, State> {
           <h3>{this.state.content}</h3>
         </header>
         <div>
+            <NavLink to="/users">
+                
+            </NavLink>
         <nav>
             <ul className="menu">
                     <li><a href="#">Gestao de Filme</a></li>
