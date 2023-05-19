@@ -11,6 +11,7 @@ import { ListComponentMovie } from "components/List-Component.Movie";
 import EventBus from "./common/ EventBus"
 import { DashboardAdmComponents } from "components/Dashboard-Adm-Component";
 import { ProfileComponents } from "components/Profile-Component";
+import { ForgotPasswordComponents } from "components/Forget-Components.Pass";
 
 type Props = {};
 
@@ -139,6 +140,7 @@ class App extends Component<Props, State> {
               <Route path="/admin" element={<DashboardAdmComponents />} />
               <Route path="/users" element={<ListComponentUser />} />
               <Route path="/movies" element={<ListComponentMovie />} />
+              <Route path="/forgot_Password" element={<ForgotPasswordComponents />} />
             </Routes>
           </div>
         </div>
