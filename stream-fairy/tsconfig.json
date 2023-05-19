@@ -25,6 +25,6 @@
     "src",
     "src/@types/index.d.ts",
     "src/_env/.env.tsx"
-  ],
+, "src/api-config.service.ts"  ],
   "exclude": ["dist", "node_modules"]
 }
