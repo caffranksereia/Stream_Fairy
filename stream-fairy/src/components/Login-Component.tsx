@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import AuthService  from "../services/auth.service";
+import { Link } from "react-router-dom";
 
 type Props = {}
 
@@ -103,6 +104,10 @@ const Login: React.FC<Props> = () => {
             )}
           </Form>
         </Formik>
+        <div>
+            <p>clique aqui no <Link to ={'/register'}> cadastra -se</Link> </p>
+            <p>Esqueceu a  <Link to ={'/forgot_Password'}> senha</Link> </p>
+        </div>
       </div>
     </div>
   );
