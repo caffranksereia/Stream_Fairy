@@ -5,9 +5,11 @@ import DashboardUserComponents from "components/Dashboard-User-Component";
 import RegisterComponent from "components/Register-Component";
 import ProfileComponents from "components/Profile-Component";
 import Home from "pages/Home";
-import LoginComponent from "components/Login";
+import LoginComponent from "components/Login-Component";
 import { IUser } from "interfaces/IUser";
 import authService from "services/auth.service";
+import { ListComponentUser } from "components/List-Component.User";
+import { ListComponentMovie } from "components/List-Component.Movie";
 
 type Props = {};
 
@@ -134,6 +136,8 @@ class App extends Component<Props, State> {
               <Route path="/profile" element={<ProfileComponents />} />
               <Route path="/user" element={<DashboardUserComponents />} />
               <Route path="/admin" element={<DashboardAdmComponents />} />
+              <Route path="/users" element={<ListComponentUser />} />
+              <Route path="/movies" element={<ListComponentMovie />} />
             </Routes>
           </div>
         </div>
