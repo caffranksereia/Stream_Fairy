@@ -28,12 +28,11 @@ class App extends Component<Props, State> {
       }
 
       componentDidMount() {
-        const user = AuthService.getCurrentUser();
+        const user = authService.getCurrentUser();
     
         if (user) {
           this.setState({
             currentUser: user,
-            showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
             showAdminBoard: user.roles.includes("ROLE_ADMIN"),
           });
         }
