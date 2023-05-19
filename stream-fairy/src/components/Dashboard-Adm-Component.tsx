@@ -42,6 +42,14 @@ export default class DashboardAdmComponents extends Component<Props, State> {
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
         </header>
+        <div>
+        <nav>
+            <ul className="menu">
+                    <li><a href="#">Gestao de Filme</a></li>
+                    <li><a href="#">Gestao de Usuario</a></li>
+                </ul>
+         </nav>
+        </div>
       </div>
     );
   }
