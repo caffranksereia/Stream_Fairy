@@ -1,9 +1,9 @@
-import { HomeComponent } from "components/Home-Components";
+import { HomeComponents } from "components/Home-Components";
 
 export default function Home() {
 return (
     <div>
-        <HomeComponent/>
+        <HomeComponents></HomeComponents>
     </div>
 )
 }

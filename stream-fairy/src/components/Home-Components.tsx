@@ -3,7 +3,7 @@ import userServices from "services/user.services";
 
 
 
-export const  Home : React.FC = () => {
+export const  HomeComponents : React.FC = () => {
     const [content, setContent] = useState<string>("");
 
     useEffect(() => {
