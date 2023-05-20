@@ -1,4 +1,4 @@
 export * from "./create-movie/mongo-movie"
-export * from "./delete-user/mongo-delete"
-export * from "./get-users/mongo-get-users"
-export * from "./update-user/mongo-update"
+export * from "./deletemovies/mongo-delete"
+export * from "./get-movies/mongo-get"
+export * from "./update-movie/mongo-update"
