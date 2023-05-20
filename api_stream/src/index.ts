@@ -1,10 +1,20 @@
 import express, { Response, Request, Router, response}  from "express"
 import * as dotenv from "dotenv"
 import swaggerUi from "swagger-ui-express"
-import { MongoCreateUserRepository, MongoGetUsersRepository, MongoUpdateUserRepository, MongoDeleteUserRepository, MongoGetMovieRepository, MongoCreateMovieRepository, MongoUpdateMovieRepository, MongoDeleteMovieRepository} from "./repository"
-import { CreateUserController, GetUsersController, UpdateUserController, DeleteUserController, GetMovieController, CreateMovieController, UpdateMovieController, DeleteMovieController} from "./controllers"
+import { MongoCreateUserRepository, MongoGetUsersRepository, 
+    MongoUpdateUserRepository, MongoDeleteUserRepository, 
+    MongoGetMoviesRepository, MongoCreateMovieRepository, 
+    MongoUpdateMovieRepository, MongoDeleteMovieRepository} from "./repository"
+import { CreateUserController, GetUsersController, 
+    UpdateUserController, DeleteUserController,
+    GetMoviesController, 
+    CreateMovieController, UpdateMovieController, 
+    DeleteMovieController} from "./controllers"
 import { MongoClient } from "./database"
-
+import { MongoGetUserRepository } from "./repository/user-repository/get-user/mongo-get-user"
+import { GetUserController } from "./controllers/user-controller/get-user/get-user"
+import {GetMovieController} from "./controllers/movie-controller/get-movie/get-movie"
+import { MongoGetMovieRepository } from "./repository/movie-repository/get-movie/mongo-get"
 
 const main = async () =>{
     const router = Router();
@@ -23,7 +33,17 @@ const main = async () =>{
     app.get('/', (req, res) => {
         res.send(":hello world")
     })
+    app.get('/users/:id', async (req, res) => {
+        const mongoGetUserRepository = new MongoGetUserRepository()
+        
+        const getUserController = new GetUserController(mongoGetUserRepository)
 
+        const {body, statusCode} = await getUserController.handle({params: req.params
+
+        })
+        res.send(body).status(statusCode)
+      
+    })
     app.get('/users', async (req, res) => {
         const mongoGetUsersRepository = new MongoGetUsersRepository();
     
@@ -43,7 +63,7 @@ const main = async () =>{
     
         res.send(body).status(statusCode)
     })
-    app.patch('/users/:id', async (req, res) => {
+    app.put('/users/:id', async (req, res) => {
         const mongoUpdateUserRepository = new MongoUpdateUserRepository();
     
         const updateUserController= new UpdateUserController(mongoUpdateUserRepository) 
@@ -68,14 +88,23 @@ const main = async () =>{
       });
 
       // Movie route
+      app.get('/movie/:id', async (req, res) => {
+        const mongoGetMovieRepository = new MongoGetMovieRepository()
+        
+        const getMovieController = new GetMovieController(mongoGetMovieRepository)
 
+        const {body, statusCode} = await getMovieController.handle({params: req.params
+        })
+        res.send(body).status(statusCode)
+      
+    })
 
     app.get('/movie', async (req, res) => {
-        const mongoGetMovieRepository = new MongoGetMovieRepository();
+        const mongoGetMovieRepository = new MongoGetMoviesRepository();
     
-        const getMovieController= new GetMovieController(mongoGetMovieRepository) 
+        const getMoviesController= new GetMoviesController(mongoGetMovieRepository) 
     
-        const {body, statusCode} = await getMovieController.handle()
+        const {body, statusCode} = await getMoviesController.handle()
     
         res.send(body).status(statusCode)
     })
@@ -100,14 +129,14 @@ const main = async () =>{
         res.send(body).status(statusCode)
     })
 
-    app.delete("/users/:id", async (req, res) => {
+    app.delete("/movie/:id", async (req, res) => {
         const mongoDeleteMovieRepository = new MongoDeleteMovieRepository();
     
-        const deleteUserController = new DeleteMovieController(
+        const deleteMovieController = new DeleteMovieController(
             mongoDeleteMovieRepository
         );
     
-        const { body, statusCode } = await deleteUserController.handle({
+        const { body, statusCode } = await deleteMovieController.handle({
           params: req.params,
         });
     
