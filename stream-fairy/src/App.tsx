@@ -2,7 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Component } from "react"
 import DashboardUserComponents from "components/Dashboard-User-Component";
 import RegisterComponent from "components/Register-Component";
-import Home from "pages/Home";
+import {HomeComponents} from "components/Home-Components";
 import LoginComponent from "components/Login-Component";
 import { IUser } from "interfaces/IUser";
 import authService from "services/auth.service";
@@ -12,7 +12,6 @@ import EventBus from "./common/ EventBus"
 import { DashboardAdmComponents } from "components/Dashboard-Adm-Component";
 import { ProfileComponents } from "components/Profile-Component";
 import { ForgotPasswordComponents } from "components/Forget-Components.Pass";
-
 type Props = {};
 
 type State = {
@@ -132,7 +131,7 @@ class App extends Component<Props, State> {
         </nav>
           <div className="container mt-3">
             <Routes>
-              <Route path="/home" element={<Home />} />
+              <Route path="/home" element={<HomeComponents />} />
               <Route path="/login" element={<LoginComponent />} />
               <Route path="/register" element={<RegisterComponent />} />
               <Route path="/profile" element={<ProfileComponents />} />
