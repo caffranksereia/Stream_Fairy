@@ -1,9 +1,12 @@
 import { Movie } from "../../../models/movie"
-import {HttpResponse} from "../../protocols"
-export interface IGetMoviesContollers {
-    handle():Promise<HttpResponse<Movie[]>>
-}
+import { HttpRequest, HttpResponse } from "../../protocols"
 
-export interface IGetMoviesRespository {
+export interface IGetMovieParams{
     getMovie(): Promise<Movie[]>
+}
+export interface IMovieController {
+    handle(httpRquest: HttpRequest<any>):Promise<HttpResponse<Movie>>
+}
+export interface IGetMovieRepository {
+    getMovie(id: string): Promise<Movie>
 }
