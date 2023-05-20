@@ -1,16 +1,17 @@
-// import { IGetMoviesContollers, IGetMoviesResponsitory } from "./protocols";
-import { Movie } from "../../../models/movie";
-import {IGetMoviesContollers, IGetMoviesRespository} from "./protocols"
+import { IGetMovieRepository, IGetMovieParams} from "./protocols";
+import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { ok, serverError } from "../../helpers";
-import { HttpResponse, IController } from "../../protocols";
-
+import { Movie } from "../../../models";
 export class GetMovieController implements IController {
-    constructor(private readonly getMoviesRepository: IGetMoviesRespository) {
-        this.getMoviesRepository = getMoviesRepository
+    constructor(private readonly getMovieRepository: IGetMovieRepository) {
+        this.getMovieRepository = getMovieRepository
     }
-    async handle(): Promise<HttpResponse<Movie[] | string>> {
+    async handle(
+        httpRequest: HttpRequest<IGetMovieParams>
+    ): Promise<HttpResponse<Movie[] | string>> {
         try {
-          const movie = await this.getMoviesRepository.getMovie();
+            const id = httpRequest.params.id;
+          const movie = await this.getMovieRepository.getMovie(id);
     
           return ok<Movie[]>(movie);
         } catch (error) {
