@@ -10,7 +10,7 @@ export class GetUserController implements IController {
         httpRequest: HttpRequest<GetUserParams>
     ): Promise<HttpResponse<User[] | string>> {
         try {
-            const id = httpRequest?.params?.id;
+            const id = httpRequest.params.id;
           const user = await this.getUserRepository.getUser(id);
     
           return ok<User[]>(user);
